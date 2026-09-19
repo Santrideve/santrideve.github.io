@@ -1,408 +1,947 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Santri Developer - Portfolio</title>
-    <link rel="icon" type="image/png" href="poto.png">
+    <title>Santri Developer - Website Kanghfidzzz</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Raleway:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Typed.js (Untuk Efek Ketik Otomatis) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        emeraldCustom: {
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        arabic: ['"Amiri"', 'serif'],
+                        mono: ['"Fira Code"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Typed.js for Dynamic Typing Effect -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: "Open Sans", sans-serif; color: #272829; background-color: #fff; line-height: 1.6; }
-        a { color: #149ddd; text-decoration: none; transition: 0.3s; }
-        a:hover { color: #37b3ed; }
-        h1, h2, h3, h4, h5, h6 { font-family: "Raleway", sans-serif; }
-
-        /* SIDEBAR NAVIGATION */
-        #header { position: fixed; top: 0; left: 0; bottom: 0; width: 300px; transition: all ease-in-out 0.5s; z-index: 9997; padding: 0 15px; background: #040b14; overflow-y: auto; }
-        #header .profile img { margin: 15px auto; display: block; width: 120px; height: 120px; border-radius: 50%; border: 8px solid #2c2f3f; object-fit: cover; }
-        #header .profile h1 { font-size: 24px; margin: 0; padding: 0; font-weight: 600; text-align: center; color: #fff; }
-        #header .profile .social-links { margin-top: 15px; text-align: center; }
-        #header .profile .social-links a { font-size: 16px; display: inline-block; background: #212431; color: #fff; line-height: 1; padding: 10px 0; margin-right: 4px; border-radius: 50%; text-align: center; width: 36px; height: 36px; transition: 0.3s; }
-        #header .profile .social-links a:hover { background: #149ddd; }
-
-        .nav-menu { padding: 20px 0 0 0; }
-        .nav-menu * { margin: 0; padding: 0; list-style: none; }
-        .nav-menu a { display: flex; align-items: center; color: #a8a9b4; padding: 12px 15px; margin-bottom: 8px; transition: 0.3s; font-size: 15px; border-radius: 4px; }
-        .nav-menu a i { font-size: 18px; padding-right: 15px; color: #6c757d; }
-        .nav-menu a:hover, .nav-menu a.active { color: #fff; }
-        .nav-menu a:hover i, .nav-menu a.active i { color: #149ddd; }
-
-        .mobile-nav-toggle { position: fixed; right: 15px; top: 15px; z-index: 9998; border: 0; font-size: 20px; background-color: #149ddd; color: #fff; width: 40px; height: 40px; display: none; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; }
-
-        /* MAIN & SECTIONS */
-        #main { margin-left: 300px; }
-        section { padding: 60px 0; }
-        .section-bg { background: #f5f8fd; }
-        .container { padding: 0 30px; }
-        .section-title { padding-bottom: 30px; }
-        .section-title h2 { font-size: 32px; font-weight: bold; margin-bottom: 20px; padding-bottom: 20px; position: relative; color: #172b4d; }
-        .section-title h2::after { content: ''; position: absolute; display: block; width: 50px; height: 3px; background: #149ddd; bottom: 0; left: 0; }
-
-        /* HERO DINAMIS & FOTO PROFIL LINGKARAN */
-        #hero { width: 100%; height: 100vh; background: url('foto.jpg') center center / cover no-repeat; position: relative; }
-        #hero:before { content: ""; background: rgba(5, 13, 24, 0.75); position: absolute; inset: 0; z-index: 1; }
-        #hero .hero-container { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; height: 100%; padding-left: 320px; }
-        
-        /* GAYA FOTO PROFIL HERO */
-        .hero-profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #149ddd;
-            box-shadow: 0 0 25px rgba(20, 157, 221, 0.5);
-            margin-bottom: 20px;
-            transition: 0.3s;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        .hero-profile-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 35px rgba(20, 157, 221, 0.8);
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-
-        #hero h1 { font-size: 56px; font-weight: 700; color: #fff; margin-bottom: 10px; }
-        #hero p { color: #fff; font-size: 24px; margin-bottom: 20px; font-family: "Poppins", sans-serif; }
-        #hero p span { border-bottom: 3px solid #149ddd; color: #149ddd; font-weight: 600; }
-
-        .tag-cloud { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
-        .tag-badge { background: rgba(20, 157, 221, 0.2); border: 1px solid #149ddd; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; }
-
-        /* ABOUT */
-        .about .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 25px 0; }
-        .about .info-item { display: flex; align-items: center; font-size: 15px; }
-        .about .info-item i { color: #149ddd; margin-right: 10px; font-size: 16px; }
-
-        /* STATS COUNTER */
-        .facts { padding-bottom: 30px; }
-        .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
-        .fact-box { background: #fff; padding: 25px 20px; border-radius: 8px; text-align: center; box-shadow: 0px 5px 25px rgba(0,0,0,0.05); }
-        .fact-box i { font-size: 36px; color: #149ddd; margin-bottom: 10px; }
-        .fact-box .counter { font-size: 32px; font-weight: 700; color: #050d18; display: inline-block; }
-        .fact-box p { font-size: 13px; color: #666; margin: 0; }
-
-        /* SERVICES */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .icon-box { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 0 25px rgba(0,0,0,0.05); transition: 0.3s; }
-        .icon-box:hover { transform: translateY(-5px); }
-        .icon-box .icon { width: 50px; height: 50px; background: #149ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; color: #fff; font-size: 20px; }
-        .icon-box h4 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-        .icon-box p { font-size: 14px; color: #666; }
-
-        /* SKILLS */
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .skills .progress { margin-bottom: 15px; }
-        .skills .skill { font-weight: 600; text-transform: uppercase; font-size: 12px; display: flex; justify-content: space-between; margin-bottom: 5px; }
-        .skills .progress-bar-wrap { background: #dce8f8; height: 10px; border-radius: 5px; }
-        .skills .progress-bar { width: 0; height: 100%; background: #149ddd; border-radius: 5px; transition: 1.2s ease-in-out; }
-
-        /* PROJECTS */
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .portfolio-item { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 0 25px rgba(0,0,0,0.08); transition: 0.3s; }
-        .portfolio-item:hover { transform: translateY(-8px); }
-        .portfolio-img { height: 180px; background-size: cover; background-position: center; transition: 0.4s; }
-        .portfolio-item:hover .portfolio-img { transform: scale(1.05); }
-        .portfolio-info { padding: 20px; }
-
-        /* CONTACT */
-        .contact .info-box { display: flex; align-items: center; padding: 20px; background: #fff; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.04); }
-        .contact .info-box i { font-size: 20px; color: #149ddd; background: #dff3fc; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 15px; }
-
-        /* FOOTER */
-        #footer { padding: 15px; color: #f4f6fd; font-size: 13px; position: fixed; left: 0; bottom: 0; width: 300px; z-index: 9999; background: #040b14; text-align: center; }
-
-        @media (max-width: 1199px) {
-            #header, #footer { left: -300px; }
-            #header.header-show, #footer.footer-show { left: 0; }
-            #main { margin-left: 0; }
-            #hero .hero-container { padding-left: 20px; }
-            .mobile-nav-toggle { display: flex; }
+        .hero-pattern {
+            background-image: radial-gradient(rgba(14, 165, 233, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
         }
-        @media (max-width: 768px) {
-            .skills-grid { grid-template-columns: 1fr; }
-            #hero h1 { font-size: 38px; }
-            .hero-profile-img { width: 120px; height: 120px; }
+        /* Toast notification animation */
+        @keyframes slideIn {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast-animate {
+            animation: slideIn 0.3s ease-out forwards;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300 antialiased overflow-x-hidden">
 
-    <button class="mobile-nav-toggle" id="mobileNavToggle"><i class="fa-solid fa-bars"></i></button>
-
-    <!-- SIDEBAR -->
-    <header id="header">
-        <div class="profile">
-            <img src="profile.png" alt="Profile" class="img-fluid">
-            <h1>Santri Dev</h1>
-            <div class="social-links">
-                <a href="https://wa.me/6285188318586" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="https://instagram.com/kanghfidzzz" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-github"></i></a>
+    <!-- MOBILE TOP BAR -->
+    <div class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-sky-500 to-emerald-400 p-[2px]">
+                <img src="https://placehold.co/200x200/0284c7/fff?text=Kang+Hafizh" alt="Kang Hafizh" class="w-full h-full object-cover rounded-full">
             </div>
+            <span class="font-bold text-white text-base">Santri Dev</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <button id="themeToggleMobile" class="p-2 rounded-lg text-slate-300 hover:text-white bg-slate-800 border border-slate-700">
+                <i class="fa-solid fa-moon dark:hidden"></i>
+                <i class="fa-solid fa-sun hidden dark:inline"></i>
+            </button>
+            <button id="mobileNavToggle" class="p-2 rounded-lg text-white bg-sky-600 hover:bg-sky-500 transition">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- SIDEBAR NAV (Desktop fixed & Mobile drawer) -->
+    <aside id="sidebar" class="fixed top-0 bottom-0 left-0 z-40 w-72 bg-slate-900 text-slate-300 border-r border-slate-800 -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col justify-between overflow-y-auto">
+        <div class="p-6">
+            <!-- Theme toggle desktop -->
+            <div class="hidden lg:flex justify-end mb-4">
+                <button id="themeToggleDesktop" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition border border-slate-800" title="Toggle Mode">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline text-amber-400"></i>
+                </button>
+            </div>
+
+            <!-- Profile Info Header -->
+            <div class="text-center relative">
+                <div class="relative w-28 h-28 mx-auto mb-4">
+                    <img src="" alt="Kang Hafizh" class="w-full h-full object-cover rounded-full ring-4 ring-sky-500/30 shadow-xl">
+                    <span class="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 border-2 border-slate-900 rounded-full" title="Status: Online & Ready"></span>
+                </div>
+                <h1 class="text-xl font-bold text-white tracking-wide">Kang Hafizh</h1>
+                <p class="text-xs text-sky-400 font-medium tracking-wider uppercase mt-1">Santri & Web Developer</p>
+                <div class="mt-2 text-xs text-slate-400 flex items-center justify-center gap-1">
+                    <i class="fa-solid fa-location-dot text-emerald-400"></i> PP Subulul Huda
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex justify-center gap-2 mt-4">
+                    <a href="https://wa.me/6285188318586" target="_blank" class="w-9 h-9 rounded-lg bg-slate-800 text-slate-300 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition shadow-sm" title="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="https://instagram.com/kanghfidzzz" target="_blank" class="w-9 h-9 rounded-lg bg-slate-800 text-slate-300 hover:bg-pink-600 hover:text-white flex items-center justify-center transition shadow-sm" title="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center justify-center transition shadow-sm" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Nav Links -->
+            <nav class="mt-8">
+                <ul class="space-y-1.5 font-medium">
+                    <li>
+                        <a href="#hero" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-sky-400 transition group active text-sm">
+                            <i class="fa-solid fa-house text-slate-500 group-hover:text-sky-400 w-5"></i> Beranda
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-sky-400 transition group text-sm">
+                            <i class="fa-solid fa-user text-slate-500 group-hover:text-sky-400 w-5"></i> Tentang Saya
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#kitab" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-sky-400 transition group text-sm">
+                            <i class="fa-solid fa-book-quran text-slate-500 group-hover:text-sky-400 w-5"></i> Kajian Kitab
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#services" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-sky-400 transition group text-sm">
+                            <i class="fa-solid fa-layer-group text-slate-500 group-hover:text-sky-400 w-5"></i> Layanan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#skills" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-sky-400 transition group text-sm">
+                            <i class="fa-solid fa-code text-slate-500 group-hover:text-sky-400 w-5"></i> Keahlian
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-sky-400 transition group text-sm">
+                            <i class="fa-solid fa-cubes text-slate-500 group-hover:text-sky-400 w-5"></i> Portfolio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#quiz" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-sky-400 transition group text-sm">
+                            <i class="fa-solid fa-brain text-slate-500 group-hover:text-sky-400 w-5"></i> Kuis Nahwu
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-sky-400 transition group text-sm">
+                            <i class="fa-solid fa-paper-plane text-slate-500 group-hover:text-sky-400 w-5"></i> Kontak
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
 
-        <nav class="nav-menu">
-            <ul>
-                <li><a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Beranda</a></li>
-                <li><a href="#about" class="nav-link"><i class="fa-solid fa-user"></i> Tentang Saya</a></li>
-                <li><a href="#services" class="nav-link"><i class="fa-solid fa-concierge-bell"></i> Layanan</a></li>
-                <li><a href="#skills" class="nav-link"><i class="fa-solid fa-code"></i> Keahlian</a></li>
-                <li><a href="#projects" class="nav-link"><i class="fa-solid fa-folder-open"></i> Portfolio</a></li>
-                <li><a href="#contact" class="nav-link"><i class="fa-solid fa-envelope"></i> Kontak</a></li>
-            </ul>
-        </nav>
-    </header>
+        <!-- Sidebar Footer -->
+        <div class="p-4 border-t border-slate-800/80 text-center text-xs text-slate-500">
+            <p>&copy; 2026 Santri Developer</p>
+            <p class="text-[10px] text-slate-600 mt-0.5">Koding &amp; Kitab Sebagai Pedoman</p>
+        </div>
+    </aside>
 
-    <footer id="footer">
-        &copy; 2026 <strong>Santri Developer</strong>
-    </footer>
+    <!-- MAIN CONTENT AREA -->
+    <div class="lg:ml-72 min-h-screen flex flex-col justify-between pt-14 lg:pt-0">
+        
+        <main class="flex-grow">
+            <!-- HERO SECTION -->
+            <section id="hero" class="relative min-h-[90vh] flex items-center justify-center p-6 md:p-12 hero-pattern overflow-hidden border-b border-slate-200 dark:border-slate-800">
+                <!-- Decorative Glow Backgrounds -->
+                <div class="absolute top-1/4 -left-20 w-80 h-80 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- HERO WITH PROFILE IMAGE & TYPED EFEK -->
-    <section id="hero">
-        <div class="hero-container">
-            <!-- FOTO PROFIL LINGKARAN HERO -->
-            <img src="profile.png" alt="Santri Dev" class="hero-profile-img">
+                <div class="max-w-4xl w-full mx-auto relative z-10 text-center lg:text-left flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                    <div class="flex-1 space-y-6">
+                        <!-- Top Tag -->
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-600 dark:text-sky-400 text-xs font-semibold">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span>Santri Tech Innovator</span>
+                        </div>
+
+                        <!-- Main Heading -->
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
+                            Assalamu'alaikum, <br class="hidden sm:inline">Saya <span class="bg-gradient-to-r from-sky-500 to-emerald-500 bg-clip-text text-transparent">Hafizh Putra K.</span>
+                        </h1>
+
+                        <!-- Dynamic Typing Subtitle -->
+                        <div class="text-lg sm:text-xl md:text-2xl font-medium text-slate-600 dark:text-slate-300 min-h-[40px]">
+                            <span>Saya Seorang </span>
+                            <span class="typed text-sky-600 dark:text-sky-400 font-semibold border-b-2 border-sky-500" data-typed-items="Web Developer., Santri Subulul Huda., Pengkaji Kitab Salafy., Pemuda Pejuang Dakwah., AI Enthusiast."></span>
+                        </div>
+
+                        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl leading-relaxed">
+                            Memadukan pemahaman mendalam literatur Islam klasik (<span class="text-sky-600 dark:text-sky-400 font-semibold">Turats</span>) dengan teknologi web modern untuk menciptakan solusi digital yang bermanfaat bagi umat dan dunia pendidikan pesantren.
+                        </p>
+
+                        <!-- Tag Badges -->
+                        <div class="flex flex-wrap gap-2 justify-center lg:justify-start">
+                            <span class="px-3 py-1 text-xs rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700"><i class="fa-solid fa-hashtag text-sky-500"></i> Santri Salafy</span>
+                            <span class="px-3 py-1 text-xs rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700"><i class="fa-solid fa-hashtag text-emerald-500"></i> Coding & Kitab</span>
+                            <span class="px-3 py-1 text-xs rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700"><i class="fa-solid fa-hashtag text-purple-500"></i> Pejuang Ilmu</span>
+                        </div>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-wrap gap-4 pt-2 justify-center lg:justify-start">
+                            <a href="#contact" class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition active:translate-y-0 flex items-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+                            </a>
+                            <a href="#projects" class="px-6 py-3 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold hover:bg-slate-300 dark:hover:bg-slate-700 transition flex items-center gap-2 border border-slate-300 dark:border-slate-700">
+                                <i class="fa-solid fa-folder-open"></i> Lihat Portfolio
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Card -->
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 flex-shrink-0">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-sky-500 to-emerald-400 rounded-3xl rotate-6 opacity-30 blur-lg"></div>
+                        <div class="relative w-full h-full glass-card rounded-3xl p-4 flex flex-col justify-between shadow-2xl border border-white/20 dark:border-slate-800">
+                            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                                <div class="flex gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                                </div>
+                                <span class="text-xs font-mono text-slate-400">SantriDev.sh</span>
+                            </div>
+                            
+                            <div class="py-4 font-mono text-xs space-y-2 text-left">
+                                <p class="text-sky-500 dark:text-sky-400">&gt; const developer = "Kang Hafizh";</p>
+                                <p class="text-emerald-600 dark:text-emerald-400">&gt; const passion = ["Kitab Kuning", "Code"];</p>
+                                <p class="text-slate-500 dark:text-slate-400">&gt; const status = "Ngaji & Building Apps";</p>
+                                <div class="p-2.5 rounded-lg bg-sky-50 dark:bg-slate-900 border border-sky-100 dark:border-slate-800 text-[11px]">
+                                    <span class="font-arabic text-base text-amber-600 dark:text-amber-400 block mb-1">الْعِلْمُ بِلَا عَمَلٍ كَالشَّجَرِ بِلَا ثَمَرٍ</span>
+                                    <span class="text-slate-600 dark:text-slate-400 italic">"Ilmu tanpa amal bak pohon tanpa buah."</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500">
+                                <span><i class="fa-solid fa-circle text-emerald-500 text-[8px] mr-1"></i> Active</span>
+                                <span class="font-mono">v2026.1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRAYER TIMES & ISLAMIC BANNER -->
+            <section class="bg-gradient-to-r from-sky-900 via-slate-900 to-emerald-950 text-white py-4 px-6 border-y border-slate-800">
+                <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                            <i class="fa-solid fa-mosque"></i>
+                        </div>
+                        <div>
+                            <span class="font-semibold block text-amber-300">Jadwal Perkiraan Waktu Sholat</span>
+                            <span class="text-slate-400 text-[11px]" id="hijriDate">Mengambil tanggal Hijriah...</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 sm:gap-6 font-mono text-xs overflow-x-auto py-1">
+                        <div class="text-center"><span class="text-slate-400 block text-[10px]">SUBUH</span><span class="font-semibold text-sky-300">04:32</span></div>
+                        <div class="text-center"><span class="text-slate-400 block text-[10px]">DZUHUR</span><span class="font-semibold text-sky-300">11:52</span></div>
+                        <div class="text-center"><span class="text-slate-400 block text-[10px]">ASHAR</span><span class="font-semibold text-sky-300">15:06</span></div>
+                        <div class="text-center"><span class="text-slate-400 block text-[10px]">MAGHRIB</span><span class="font-semibold text-amber-300">17:56</span></div>
+                        <div class="text-center"><span class="text-slate-400 block text-[10px]">ISYA</span><span class="font-semibold text-sky-300">19:05</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABOUT SECTION -->
+            <section id="about" class="py-20 px-6 max-w-6xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold text-sky-500 tracking-widest uppercase mb-2">Biografi Ringkas</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Tentang Saya</h3>
+                    <div class="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Left Photo Card -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl relative group border-4 border-white dark:border-slate-800">
+                            <img src="https://placehold.co/600x600/075985/ffffff?text=Kang+Hafizh+Profile" alt="Kang Hafizh" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                            <div class="absolute bottom-6 left-6 right-6 text-white">
+                                <span class="px-2.5 py-1 rounded-md bg-sky-500 text-[10px] font-bold tracking-wider uppercase mb-2 inline-block">Aktif Ngaji &amp; Dev</span>
+                                <h4 class="text-xl font-bold">Hafizh Putra Kurniawan</h4>
+                                <p class="text-xs text-slate-300 mt-1">Santri Pondok Pesantren Subulul Huda</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Bio Info -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-white">
+                            Web Developer &amp; Pengkaji Kitab Turats Islam
+                        </h4>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Selamat datang di ruang digital saya! Saya biasa dipanggil <strong class="text-sky-600 dark:text-sky-400">Kang Hafizh</strong>. Saya mendedikasikan keseharian saya untuk mendalami ilmu-ilmu syar'i seperti Fiqih Syafi'iyah, Tasawuf, Nahwu, &amp; Sharaf, sembari aktif mengembangkan aplikasi web modern yang interaktif dan responsif.
+                        </p>
+
+                        <!-- Info Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3 shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-user-tag"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block">Nama Panggilan</span>
+                                    <span class="font-semibold text-slate-800 dark:text-slate-200 text-sm">Kang Hafizh</span>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3 shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block">Status Peran</span>
+                                    <span class="font-semibold text-slate-800 dark:text-slate-200 text-sm">Santri Aktif &amp; Freelancer</span>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3 shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block">Fokus Utama</span>
+                                    <span class="font-semibold text-slate-800 dark:text-slate-200 text-sm">Web Design &amp; EdTech</span>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3 shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-book-open"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block">Fokus Kajian</span>
+                                    <span class="font-semibold text-slate-800 dark:text-slate-200 text-sm">Fiqih &amp; Tasawuf</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Invitation Box -->
+                        <div class="p-4 rounded-2xl bg-gradient-to-r from-sky-500/10 to-emerald-500/10 border border-sky-500/20 text-sm text-slate-700 dark:text-slate-300">
+                            <p>📌 <strong>Belajar Bareng &amp; Diskusi:</strong> Terbuka untuk diskusi fiqih, musyawarah kitab kuning, maupun project pembuatan website pesantren dan portfolio personal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATS COUNTER GRID -->
+                <div id="statsSection" class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+                    <div class="glass-card p-6 rounded-2xl text-center border shadow-sm">
+                        <i class="fa-solid fa-laptop-code text-3xl text-sky-500 mb-2"></i>
+                        <div class="text-3xl font-extrabold text-slate-900 dark:text-white"><span class="counter" data-target="15">0</span>+</div>
+                        <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Project Selesai</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center border shadow-sm">
+                        <i class="fa-solid fa-book-quran text-3xl text-emerald-500 mb-2"></i>
+                        <div class="text-3xl font-extrabold text-slate-900 dark:text-white"><span class="counter" data-target="12">0</span>+</div>
+                        <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Kitab Dikaji</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center border shadow-sm">
+                        <i class="fa-solid fa-clock-rotate-left text-3xl text-purple-500 mb-2"></i>
+                        <div class="text-3xl font-extrabold text-slate-900 dark:text-white"><span class="counter" data-target="1400">0</span>+</div>
+                        <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Jam Koding</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center border shadow-sm">
+                        <i class="fa-solid fa-heart text-3xl text-rose-500 mb-2"></i>
+                        <div class="text-3xl font-extrabold text-slate-900 dark:text-white"><span class="counter" data-target="100">0</span>%</div>
+                        <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Semangat Ngaji</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- KITAB CLASSICAL LIBRARY SECTION -->
+            <section id="kitab" class="py-20 px-6 bg-slate-100 dark:bg-slate-900/60 border-y border-slate-200 dark:border-slate-800">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <h2 class="text-xs font-bold text-emerald-500 tracking-widest uppercase mb-2">Kajian Turats &amp; Literatur</h2>
+                        <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Perpustakaan Kitab Dikaji</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3">Beberapa kitab klasik salaf yang dipelajari dan dijadikan rujukan keilmuan sehari-hari.</p>
+                        <div class="w-16 h-1 bg-gradient-to-r from-emerald-500 to-sky-500 mx-auto mt-4 rounded-full"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Kitab Card 1 -->
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-4">
+                                    <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">Fiqih Dasar</span>
+                                    <i class="fa-solid fa-book text-slate-300 dark:text-slate-700 text-2xl"></i>
+                                </div>
+                                <h4 class="font-arabic text-2xl font-bold text-slate-800 dark:text-slate-100 mb-1">سفينة النجاة</h4>
+                                <h5 class="font-bold text-slate-900 dark:text-white text-base">Safinatun Najah</h5>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">
+                                    Ringkasan Fiqih Syafi'i mencakup pilar ibadah dasar, taharah, shalat, dan zakat.
+                                </p>
+                            </div>
+                            <button onclick="openKitabModal('Safinatun Najah', 'سفينة النجاة', 'Syekh Salim bin Sumair Al-Hadhrami', 'Matan Fiqih Syafi\'i ringkas yang menjadi fondasi utama santri dalam memahami tata cara ibadah harian, bersuci (taharah), shalat, hingga syarat rukun syariat.', 'إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ - Segala amal tergantung pada niatnya.')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-600 transition text-xs font-semibold text-slate-700 dark:text-slate-300">
+                                Read Summary &amp; Quote
+                            </button>
+                        </div>
+
+                        <!-- Kitab Card 2 -->
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-4">
+                                    <span class="px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold">Grammar Arab</span>
+                                    <i class="fa-solid fa-scroll text-slate-300 dark:text-slate-700 text-2xl"></i>
+                                </div>
+                                <h4 class="font-arabic text-2xl font-bold text-slate-800 dark:text-slate-100 mb-1">ألفية ابن مالك</h4>
+                                <h5 class="font-bold text-slate-900 dark:text-white text-base">Alfiyah Ibn Malik</h5>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">
+                                    Nazam 1.000 bait tata bahasa Arab (Nahwu &amp; Sharaf) tingkat lanjut.
+                                </p>
+                            </div>
+                            <button onclick="openKitabModal('Alfiyah Ibn Malik', 'ألفية ابن مالك', 'Ibnu Malik', 'Nazam master-piece tata bahasa Arab setebal 1.000 bait kaidah Nahwu Sharaf yang sangat penting dalam memahami teks Arab klasik.', 'كَلَامُنَا لَفْظٌ مُفِيدٌ كَاسْتَقِمْ - Kalam menurut istilah kami adalah lafazh yang memberi manfaat seperti kalimat Istaqim.')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-600 transition text-xs font-semibold text-slate-700 dark:text-slate-300">
+                                Read Summary &amp; Quote
+                            </button>
+                        </div>
+
+                        <!-- Kitab Card 3 -->
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-4">
+                                    <span class="px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs font-bold">Adab &amp; Akhlak</span>
+                                    <i class="fa-solid fa-feather text-slate-300 dark:text-slate-700 text-2xl"></i>
+                                </div>
+                                <h4 class="font-arabic text-2xl font-bold text-slate-800 dark:text-slate-100 mb-1">تعليم المتعلم</h4>
+                                <h5 class="font-bold text-slate-900 dark:text-white text-base">Ta'lim Muta'allim</h5>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">
+                                    Panduan etika, metodologi, dan adab menuntut ilmu bagi para penuntut ilmu.
+                                </p>
+                            </div>
+                            <button onclick="openKitabModal('Ta\'lim Muta\'allim', 'تعليم المتعلم', 'Syekh Az-Zarnuji', 'Buku panduan utama santri tentang niat belajar, memilih guru, memilih kawan, memuliakan ilmu, serta faktor pemicu mudah menghafal dan rezeki.', 'مَا هَلَكَ امْرُؤٌ عَنْ مَشُوَرةٍ - Tidak akan celaka seseorang yang bersedia bermusyawarah.')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-purple-500 hover:text-white dark:hover:bg-purple-600 transition text-xs font-semibold text-slate-700 dark:text-slate-300">
+                                Read Summary &amp; Quote
+                            </button>
+                        </div>
+
+                        <!-- Kitab Card 4 -->
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-4">
+                                    <span class="px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">Hadits Nabi</span>
+                                    <i class="fa-solid fa-kaaba text-slate-300 dark:text-slate-700 text-2xl"></i>
+                                </div>
+                                <h4 class="font-arabic text-2xl font-bold text-slate-800 dark:text-slate-100 mb-1">رياض الصالحين</h4>
+                                <h5 class="font-bold text-slate-900 dark:text-white text-base">Riyadhus Shalihin</h5>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">
+                                    Kumpulan hadits pilihan penyuci jiwa, akhlak mulia, dan petunjuk hidup harian.
+                                </p>
+                            </div>
+                            <button onclick="openKitabModal('Riyadhus Shalihin', 'رياض الصالحين', 'Imam An-Nawawi', 'Kumpulan hadits shahih yang menyusun bimbingan akhlak, peribadatan, kesabaran, keikhlasan, dan perilaku sosial bagi setiap muslim.', 'الدَّالُّ عَلَى الخَيْرِ كَفَاعِلِهِ - Orang yang menunjukkan kebaikan mendapat pahala seperti pelakunya.')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-500 hover:text-white dark:hover:bg-amber-600 transition text-xs font-semibold text-slate-700 dark:text-slate-300">
+                                Read Summary &amp; Quote
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICES SECTION -->
+            <section id="services" class="py-20 px-6 max-w-6xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold text-sky-500 tracking-widest uppercase mb-2">Penawaran &amp; Keahlian</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Layanan &amp; Aktivitas</h3>
+                    <div class="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                        <div class="w-14 h-14 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Web Development</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Membangun landing page, portfolio personal, serta sistem informasi pesantren yang responsif, cepat, dan modern.
+                        </p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Kajian Kitab Kuning</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Diskusi, musyawarah, dan belajar bersama kitab-kitab turats salafiyah, fiqih mazhab Syafi'i, serta adab penuntut ilmu.
+                        </p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-pen-nib"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Desain &amp; Layout Book</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Pembuatan sampul buku digital, perapian tata letak materi pembelajaran, modul pondok, dan media promosi dakwah.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SKILLS SECTION -->
+            <section id="skills" class="py-20 px-6 bg-slate-100 dark:bg-slate-900/60 border-y border-slate-200 dark:border-slate-800">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <h2 class="text-xs font-bold text-sky-500 tracking-widest uppercase mb-2">Kompetensi Kebiasaan</h2>
+                        <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Tingkat Keahlian</h3>
+                        <div class="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto mt-4 rounded-full"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Tech Skills -->
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-laptop text-sky-500"></i> Pemrograman Web
+                            </h4>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                                    <span>HTML5 &amp; CSS3 / Tailwind CSS</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                    <div class="skill-bar bg-sky-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="90%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                                    <span>JavaScript (ES6+) / Web Interactive</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                    <div class="skill-bar bg-sky-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="75%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                                    <span>UI/UX Layouting &amp; Mobile Responsive</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                    <div class="skill-bar bg-sky-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="85%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pesantren Skills -->
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-book-quran text-emerald-500"></i> Keilmuan Pesantren
+                            </h4>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                                    <span>Membaca &amp; Memahami Kitab Kuning</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                    <div class="skill-bar bg-emerald-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="90%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                                    <span>Fiqih Ibadaat &amp; Muamalat</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                    <div class="skill-bar bg-emerald-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="80%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                                    <span>Tasawuf, Akhlak &amp; Public Speaking</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                    <div class="skill-bar bg-emerald-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS SHOWCASE SECTION -->
+            <section id="projects" class="py-20 px-6 max-w-6xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-xs font-bold text-sky-500 tracking-widest uppercase mb-2">Karya &amp; Implementasi</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Portfolio Terbaru</h3>
+                    <div class="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Filter Category Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 mb-10">
+                    <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-sky-500 text-white shadow-sm transition" data-filter="all">Semua Project</button>
+                    <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition" data-filter="web">Web Dev</button>
+                    <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition" data-filter="edtech">EdTech Pesantren</button>
+                    <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition" data-filter="design">Desain &amp; Layout</button>
+                </div>
+
+                <!-- Portfolio Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Project Item 1 -->
+                    <div class="project-card bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm group hover:shadow-xl transition duration-300" data-category="web">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://placehold.co/600x400/0284c7/ffffff?text=Portfolio+SantriDev" alt="Website Portfolio" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-slate-900/80 text-white text-[10px] font-bold">Web Dev</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Website Portfolio Personal</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                                Website profil interaktif modern dengan sidebar navigasi, fitur dark mode, dan jadwal sholat.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[11px] font-mono text-sky-500">HTML / Tailwind / JS</span>
+                                <button onclick="openProjectModal('Website Portfolio Personal', 'Website profil interaktif modern dengan sidebar navigasi, fitur dark mode, widget jadwal sholat, serta kuis Nahwu interaktif.', 'https://placehold.co/800x500/0284c7/ffffff?text=Portfolio+Preview')" class="text-xs font-semibold text-sky-600 dark:text-sky-400 hover:underline">Detail &rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Item 2 -->
+                    <div class="project-card bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm group hover:shadow-xl transition duration-300" data-category="edtech">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://placehold.co/600x400/059669/ffffff?text=Landing+Pesantren" alt="Landing Page Pesantren" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-slate-900/80 text-white text-[10px] font-bold">EdTech</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Landing Page Edukasi Pesantren</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                                Halaman promosi interaktif penerimaan santri baru (PSB) lengkap dengan fitur pendaftaran.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[11px] font-mono text-emerald-500">EdTech / Web Page</span>
+                                <button onclick="openProjectModal('Landing Page Edukasi Pesantren', 'Sistem landing page modern untuk mempermudah pendaftaran online santri baru, menyajikan jadwal pengajian, dan informasi program pondok.', 'https://placehold.co/800x500/059669/ffffff?text=EdTech+Preview')" class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">Detail &rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Item 3 -->
+                    <div class="project-card bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm group hover:shadow-xl transition duration-300" data-category="design">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://placehold.co/600x400/7c3aed/ffffff?text=Design+Kitab+Book" alt="Desain Layout Kitab" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-slate-900/80 text-white text-[10px] font-bold">Desain</span>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Desain Kitab &amp; Cover Buku</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                                Layout rapi, mudah dibaca, dan artistik untuk buku panduan digital santri &amp; sampul kitab turats.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[11px] font-mono text-purple-500">Photoshop / Illustrator</span>
+                                <button onclick="openProjectModal('Desain Kitab & Cover Buku', 'Desain tata letak berstandar cetak untuk kitab terjemahan dan modul hafalan santri dengan estetika ornamen Islami.', 'https://placehold.co/800x500/7c3aed/ffffff?text=Design+Preview')" class="text-xs font-semibold text-purple-600 dark:text-purple-400 hover:underline">Detail &rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NAHWU & SHARAF QUIZ MINI-TOOL -->
+            <section id="quiz" class="py-20 px-6 bg-slate-100 dark:bg-slate-900/60 border-y border-slate-200 dark:border-slate-800">
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-center mb-10">
+                        <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">Mini Tool Santri</span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-2">Kuis Interaktif Nahwu Dasar</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Uji pemahaman dasar tata bahasa Arab kamu di sini!</p>
+                    </div>
+
+                    <div id="quizContainer" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-md">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-6">
+                            <span class="text-xs font-semibold text-sky-500">Pertanyaan <span id="quizCurrentNum">1</span> dari 3</span>
+                            <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md text-slate-600 dark:text-slate-300" id="quizScoreText">Skor: 0</span>
+                        </div>
+
+                        <div id="quizContent">
+                            <h4 id="quizQuestion" class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-6">Loading pertanyaan...</h4>
+                            <div id="quizOptions" class="space-y-3">
+                                <!-- Options populated via JS -->
+                            </div>
+                        </div>
+
+                        <div id="quizFeedback" class="hidden mt-6 p-4 rounded-2xl text-xs font-medium"></div>
+
+                        <div class="mt-8 flex justify-end">
+                            <button id="nextQuizBtn" onclick="nextQuestion()" class="hidden px-5 py-2.5 rounded-xl bg-sky-500 text-white text-xs font-semibold hover:bg-sky-600 transition">Pertanyaan Berikutnya &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT & WHATSAPP GENERATOR -->
+            <section id="contact" class="py-20 px-6 max-w-6xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold text-sky-500 tracking-widest uppercase mb-2">Mari Terhubung</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Hubungi Saya</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mt-3">Pilih topik dan kirimkan pesan langsung via WhatsApp atau Instagram.</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Quick Info Cards -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <a href="https://wa.me/6285188318586" target="_blank" class="block p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500 transition group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-xl group-hover:bg-emerald-500 group-hover:text-white transition">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">WhatsApp</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">+62 851-8831-8586</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://instagram.com/kanghfidzzz" target="_blank" class="block p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-pink-500 transition group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-pink-500/10 text-pink-500 flex items-center justify-center text-xl group-hover:bg-pink-500 group-hover:text-white transition">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">Instagram</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">@kanghfidzzz</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">Domisili Pesantren</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Pondok Pesantren Subulul Huda</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Message Generator Form -->
+                    <div class="lg:col-span-7 bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Kirim Pesan Cepat ke WhatsApp</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Isi formulir ringkas di bawah ini untuk menghasilkan pesan otomatis.</p>
+
+                        <form id="waForm" onsubmit="sendWaMessage(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Nama Anda</label>
+                                <input type="text" id="waName" placeholder="Contoh: Ahmad" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-sky-500 outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Topik Keperluan</label>
+                                <select id="waTopic" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-sky-500 outline-none">
+                                    <option value="Pembuatan Website / Digital Project">Pembuatan Website / Digital Project</option>
+                                    <option value="Diskusi & Belajar Kitab Kuning">Diskusi &amp; Belajar Kitab Kuning</option>
+                                    <option value="Silaturahmi & Kolaborasi Dakwah">Silaturahmi &amp; Kolaborasi Dakwah</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Pesan / Pertanyaan Ringkas</label>
+                                <textarea id="waMessage" rows="3" placeholder="Tuliskan detail pesan Anda di sini..." required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-sky-500 outline-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transition">
+                                <i class="fa-brands fa-whatsapp text-base"></i> Buka WhatsApp &amp; Kirim
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="bg-slate-900 text-slate-400 py-8 px-6 text-center border-t border-slate-800 text-xs">
+            <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <span class="font-bold text-white text-sm">Santri Developer</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5">&copy; 2026 Hafizh Putra Kurniawan. All rights reserved.</p>
+                </div>
+                <div class="flex gap-4 text-sm">
+                    <a href="https://wa.me/6285188318586" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/kanghfidzzz" target="_blank" class="hover:text-pink-400 transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-sky-400 transition"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- KITAB DETAIL MODAL -->
+    <div id="kitabModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-lg w-full p-6 border border-slate-200 dark:border-slate-800 shadow-2xl relative">
+            <button onclick="closeKitabModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-500 text-xs font-bold inline-block mb-2">Detail Turats</span>
+            <h3 id="modalKitabArabic" class="font-arabic text-3xl font-bold text-slate-900 dark:text-white"></h3>
+            <h4 id="modalKitabTitle" class="text-xl font-bold text-slate-800 dark:text-slate-100 mt-1"></h4>
+            <p id="modalKitabAuthor" class="text-xs text-sky-500 font-medium mt-1"></p>
             
-            <h1>Santri Developer</h1>
-            <p>Saya Seorang <span class="typed" data-typed-items="Web Developer., Santri Pondok Pesantren Subulul Huda., Pengkaji Kitab Kitab Salafy., Pemuda Pejuang Dakwah.,AI engineer"></span></p>
-            <div class="tag-cloud">
-                <span class="tag-badge">#Santri Salafy</span>
-                <span class="tag-badge">#Koding Dan Kitab untuk pedomannya</span>
-                <span class="tag-badge">#PejuangIlmu</span>
+            <p id="modalKitabSummary" class="text-xs text-slate-600 dark:text-slate-300 mt-4 leading-relaxed"></p>
+
+            <div class="mt-5 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-slate-800 dark:text-slate-200">
+                <span class="text-[10px] font-bold text-amber-500 uppercase tracking-wider block mb-1">Mutiara Qoul / Quote:</span>
+                <p id="modalKitabQuote" class="text-xs italic"></p>
+            </div>
+
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeKitabModal()" class="px-5 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-300 dark:hover:bg-slate-700 transition">
+                    Tutup
+                </button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <main id="main">
-
-        <!-- ABOUT -->
-        <section id="about" class="about">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Tentang Saya</h2>
-                    <p>Selamat datang di ruang digital saya! Saya adalah kombinasi antara pengkaji literatur Islam klasik (Kitab Kuning) dan pengembang perangkat lunak modern sebelum nya pernkenalkan
-                        nama saya Hafizh Putra Kurniawan biasa dipanggil kang Hafizh .</p>
-                </div>
-
-                <h3>Web Developer &amp; Pengkaji Kitab Turats</h3>
-                <p style="margin-top: 10px;">
-                    Saya mendedikasikan waktu saya untuk mendalami Fiqih Syafi'iyah, Tasawuf, serta tata bahasa Arab (Nahwu & Sharaf). Di sisi lain, saya terus mengasah kreativitas dalam dunia koding untuk menciptakan media pembelajaran digital yang intuitif, cepat, dan bermanfaat luas.
-                </p>
-
-                <div class="info-grid">
-                    <div class="info-item"><i class="fa-solid fa-angle-right"></i> <strong>Nama:</strong>&nbsp; Kang Hafidz</div>
-                    <div class="info-item"><i class="fa-solid fa-angle-right"></i> <strong>Status:</strong>&nbsp; Santri Aktif & Freelancer</div>
-                    <div class="info-item"><i class="fa-solid fa-angle-right"></i> <strong>Fokus:</strong>&nbsp; Web Design & EdTech Pesantren</div>
-                    <div class="info-item"><i class="fa-solid fa-angle-right"></i> <strong>Kajian:</strong>&nbsp; Fiqih & Tasawuf</div>
-                    <div class="info-item"><i class="fa-solid fa-angle-right"></i> <strong>WhatsApp:</strong>&nbsp; +62 851-8831-8586</div>
-                    <div class="info-item"><i class="fa-solid fa-angle-right"></i> <strong>Instagram:</strong>&nbsp; @kanghfidzzz</div>
-                </div>
-
-                <p>
-                    📌 <strong>Belajar Bareng:</strong> Terbuka untuk diskusi fiqih, belajar kitab kuning bareng, atau sekadar bertukar pikiran seputar koding. Jangan ragu buat kontak lewat WhatsApp atau DM Instagram!
-                </p>
+    <!-- PROJECT DETAIL MODAL -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-xl w-full p-6 border border-slate-200 dark:border-slate-800 shadow-2xl relative">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="rounded-2xl overflow-hidden mb-4 border border-slate-200 dark:border-slate-800">
+                <img id="modalProjImg" src="" alt="Project Preview" class="w-full h-48 object-cover">
             </div>
-        </section>
-
-        <!-- STATS ANIMATED COUNTER -->
-        <section class="facts section-bg">
-            <div class="container">
-                <div class="facts-grid">
-                    <div class="fact-box">
-                        <i class="fa-solid fa-laptop-code"></i>
-                        <div><span class="counter" data-target="15">0</span>+</div>
-                        <p>Project Selesai</p>
-                    </div>
-                    <div class="fact-box">
-                        <i class="fa-solid fa-book-quran"></i>
-                        <div><span class="counter" data-target="10">0</span>+</div>
-                        <p>Kitab Dikaji</p>
-                    </div>
-                    <div class="fact-box">
-                        <i class="fa-solid fa-clock"></i>
-                        <div><span class="counter" data-target="1200">0</span>+</div>
-                        <p>Jam Koding</p>
-                    </div>
-                    <div class="fact-box">
-                        <i class="fa-solid fa-comments"></i>
-                        <div><span class="counter" data-target="100">0</span>%</div>
-                        <p>Semangat Ngaji</p>
-                    </div>
-                </div>
+            <h3 id="modalProjTitle" class="text-xl font-bold text-slate-900 dark:text-white"></h3>
+            <p id="modalProjDesc" class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed"></p>
+            
+            <div class="mt-6 flex justify-end gap-3">
+                <button onclick="closeProjectModal()" class="px-5 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-300 dark:hover:bg-slate-700 transition">
+                    Tutup
+                </button>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <!-- SERVICES -->
-        <section id="services">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Layanan & Aktivitas</h2>
-                    <p>Hal-hal yang biasa saya kerjakan dan siap bantu untuk kamu:</p>
-                </div>
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-2xl bg-slate-900 text-white border border-slate-700 shadow-xl text-xs flex items-center gap-3 toast-animate">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toastMsg">Notifikasi</span>
+    </div>
 
-                <div class="services-grid">
-                    <div class="icon-box">
-                        <div class="icon"><i class="fa-solid fa-code"></i></div>
-                        <h4>Web Development</h4>
-                        <p>Membangun landing page, portfolio, dan website interaktif yang responsif dan modern.</p>
-                    </div>
-                    <div class="icon-box">
-                        <div class="icon"><i class="fa-solid fa-book-open"></i></div>
-                        <h4>Ngaji Kitab Kuning</h4>
-                        <p>Diskusi dan belajar bersama mengenai kitab-kitab turats, fiqih lintas madzhab, & tasawuf.</p>
-                    </div>
-                    <div class="icon-box">
-                        <div class="icon"><i class="fa-solid fa-pen-nib"></i></div>
-                        <h4>Desain & Layout</h4>
-                        <p>Pembuatan desain cover buku digital, layout materi pembelajaran, dan konten media sosial.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SKILLS -->
-        <section id="skills" class="skills section-bg">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Keahlian</h2>
-                    <p>Tingkat penguasaan dalam pemrograman web dan keilmuan pesantren:</p>
-                </div>
-
-                <div class="skills-grid">
-                    <div>
-                        <div class="progress">
-                            <div class="skill">HTML & CSS <span>90%</span></div>
-                            <div class="progress-bar-wrap"><div class="progress-bar" data-width="90%"></div></div>
-                        </div>
-                        <div class="progress">
-                            <div class="skill">JavaScript <span>75%</span></div>
-                            <div class="progress-bar-wrap"><div class="progress-bar" data-width="75%"></div></div>
-                        </div>
-                        <div class="progress">
-                            <div class="skill">Mengajar & Sharing <span>85%</span></div>
-                            <div class="progress-bar-wrap"><div class="progress-bar" data-width="85%"></div></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="progress">
-                            <div class="skill">Baca Kitab Kuning <span>90%</span></div>
-                            <div class="progress-bar-wrap"><div class="progress-bar" data-width="90%"></div></div>
-                        </div>
-                        <div class="progress">
-                            <div class="skill">Fiqih Lintas Madzhab <span>80%</span></div>
-                            <div class="progress-bar-wrap"><div class="progress-bar" data-width="80%"></div></div>
-                        </div>
-                        <div class="progress">
-                            <div class="skill">Tasawuf & Akhlak <span>85%</span></div>
-                            <div class="progress-bar-wrap"><div class="progress-bar" data-width="85%"></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section id="projects">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Projects Terbaru</h2>
-                    <p>Beberapa karya yang pernah saya kembangkan:</p>
-                </div>
-
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img" style="background-image: url('project1.jpg');"></div>
-                        <div class="portfolio-info">
-                            <h4>Website Portfolio</h4>
-                            <p>Website personal modern dengan Sidebar Navigasi khas iPortfolio.</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <div class="portfolio-img" style="background-image: url('project2.jpg');"></div>
-                        <div class="portfolio-info">
-                            <h4>Landing Page Edukasi</h4>
-                            <p>Halaman promosi interaktif untuk program belajar dan media digital.</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <div class="portfolio-img" style="background-image: url('project3.jpg');"></div>
-                        <div class="portfolio-info">
-                            <h4>Desain Kitab & Buku</h4>
-                            <p>Layout rapi dan artistik untuk buku digital serta sampul naskah turats.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact" class="contact section-bg">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Hubungi Saya</h2>
-                    <p>Ada project web atau mau diajak ngaji bareng? Kontak via media sosial berikut:</p>
-                </div>
-
-                <div class="info-box">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <div>
-                        <h4>WhatsApp:</h4>
-                        <p><a href="https://wa.me/6285188318586" target="_blank">Chat Via WhatsApp (+62 851-8831-8586)</a></p>
-                    </div>
-                </div>
-
-                <div class="info-box">
-                    <i class="fa-brands fa-instagram"></i>
-                    <div>
-                        <h4>Instagram:</h4>
-                        <p><a href="https://instagram.com/kanghfidzzz" target="_blank">@kanghfidzzz</a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- SCRIPT DINAMIS -->
     <script>
-        // 1. Mobile Menu Toggle
-        const toggleBtn = document.getElementById('mobileNavToggle');
-        const header = document.getElementById('header');
-        const footer = document.getElementById('footer');
+        // --- 1. DARK / LIGHT MODE CONTROLLER ---
+        const html = document.documentElement;
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        setTheme(savedTheme);
 
-        toggleBtn.addEventListener('click', () => {
-            header.classList.toggle('header-show');
-            footer.classList.toggle('footer-show');
-            toggleBtn.querySelector('i').classList.toggle('fa-bars');
-            toggleBtn.querySelector('i').classList.toggle('fa-xmark');
+        document.getElementById('themeToggleDesktop').addEventListener('click', () => {
+            setTheme(html.classList.contains('dark') ? 'light' : 'dark');
+        });
+        document.getElementById('themeToggleMobile').addEventListener('click', () => {
+            setTheme(html.classList.contains('dark') ? 'light' : 'dark');
         });
 
-        // 2. Typed Effect (Efek Ketik Otomatis)
+        // --- 2. MOBILE SIDEBAR TOGGLE ---
+        const sidebar = document.getElementById('sidebar');
+        const mobileNavToggle = document.getElementById('mobileNavToggle');
+        
+        mobileNavToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Close mobile sidebar on link click
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            });
+        });
+
+        // --- 3. TYPED EFFECT INITIALIZATION ---
         const selectTyped = document.querySelector('.typed');
         if (selectTyped) {
             let typed_items = selectTyped.getAttribute('data-typed-items').split(',');
             new Typed('.typed', {
                 strings: typed_items,
                 loop: true,
-                typeSpeed: 80,
-                backSpeed: 50,
+                typeSpeed: 70,
+                backSpeed: 40,
                 backDelay: 2000
             });
         }
 
-        // 3. Counter Animation
-        let animatedCounter = false;
-        function startCounter() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
+        // --- 4. HIJRI DATE GENERATOR ---
+        function setHijriDate() {
+            try {
+                const today = new Date();
+                const options = { calendar: 'islamic-umalqura', day: 'numeric', month: 'long', year: 'numeric' };
+                const formatter = new Intl.DateTimeFormat('id-ID-u-ca-islamic-umalqura', options);
+                document.getElementById('hijriDate').innerText = formatter.format(today) + ' H';
+            } catch (e) {
+                document.getElementById('hijriDate').innerText = "12 Rabiul Awal 1448 H";
+            }
+        }
+        setHijriDate();
+
+        // --- 5. SCROLL TRIGGER FOR SKILL BARS & STATS COUNTER ---
+        let counterDone = false;
+        function animateCounters() {
+            document.querySelectorAll('.counter').forEach(counter => {
                 const target = +counter.getAttribute('data-target');
-                const speed = 200;
+                const speed = 100;
                 const updateCount = () => {
                     const count = +counter.innerText;
                     const inc = target / speed;
@@ -417,40 +956,203 @@
             });
         }
 
-        // 4. Scroll Interactivity
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-menu a');
-
         window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-
+            // Trigger Skill Bars
             const skillsSec = document.getElementById('skills');
-            if (skillsSec.getBoundingClientRect().top < window.innerHeight / 1.2) {
-                document.querySelectorAll('.progress-bar').forEach(bar => {
+            if (skillsSec && skillsSec.getBoundingClientRect().top < window.innerHeight / 1.2) {
+                document.querySelectorAll('.skill-bar').forEach(bar => {
                     bar.style.width = bar.dataset.width;
                 });
             }
 
-            const factsSec = document.querySelector('.facts');
-            if (factsSec.getBoundingClientRect().top < window.innerHeight / 1.2 && !animatedCounter) {
-                startCounter();
-                animatedCounter = true;
+            // Trigger Counter
+            const statsSec = document.getElementById('statsSection');
+            if (statsSec && statsSec.getBoundingClientRect().top < window.innerHeight / 1.2 && !counterDone) {
+                animateCounters();
+                counterDone = true;
             }
         });
+
+        // --- 6. KITAB MODAL LOGIC ---
+        function openKitabModal(title, arabic, author, summary, quote) {
+            document.getElementById('modalKitabTitle').innerText = title;
+            document.getElementById('modalKitabArabic').innerText = arabic;
+            document.getElementById('modalKitabAuthor').innerText = 'Karya: ' + author;
+            document.getElementById('modalKitabSummary').innerText = summary;
+            document.getElementById('modalKitabQuote').innerText = quote;
+            document.getElementById('kitabModal').classList.remove('hidden');
+        }
+        function closeKitabModal() {
+            document.getElementById('kitabModal').classList.add('hidden');
+        }
+
+        // --- 7. PROJECT FILTER & MODAL LOGIC ---
+        const filterBtns = document.querySelectorAll('.project-filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-sky-500', 'text-white');
+                    b.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
+                });
+                btn.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
+                btn.classList.add('bg-sky-500', 'text-white');
+
+                const filter = btn.dataset.filter;
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        function openProjectModal(title, desc, img) {
+            document.getElementById('modalProjTitle').innerText = title;
+            document.getElementById('modalProjDesc').innerText = desc;
+            document.getElementById('modalProjImg').src = img;
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // --- 8. NAHWU QUIZ MINI-TOOL LOGIC ---
+        const quizData = [
+            {
+                q: "Apa definisi 'Kalam' menurut istilah para ahli Nahwu (seperti di Alfiyah / Jurumiyah)?",
+                options: [
+                    "Lafazh yang tersusun yang memberi manfaat dengan sengaja",
+                    "Semua kata yang ditulis dalam bahasa Arab",
+                    "Suara yang keluar tanpa makna khusus",
+                    "Setiap bait nasyid Islami"
+                ],
+                correct: 0,
+                explain: "Kalam secara istilah harus memenuhi 4 syarat: Lafazh, Murakkab (tersusun), Mufid (memberi kefahaman), dan Wadh'i (sengaja/bahasa Arab)."
+            },
+            {
+                q: "Tanda utama Isim (kata benda) di antara pilihan berikut adalah...",
+                options: [
+                    "Bisa kemasukan huruf Jarr dan Tanwin",
+                    "Selalu berakhiran huruf Wau",
+                    "Tidak bisa menerima Alif Lam (ال)",
+                    "Selalu bertanda sukun"
+                ],
+                correct: 0,
+                explain: "Ciri khas Isim antara lain: bisa bertanwin, menerima Alif Lam (ال), dan bisa didahului Huruf Jarr."
+            },
+            {
+                q: "Fi'il Madhi adalah kata kerja yang menunjukkan waktu...",
+                options: [
+                    "Masa Lampau (Past)",
+                    "Masa Sekarang (Present)",
+                    "Masa Depan (Future)",
+                    "Perintah (Imperative)"
+                ],
+                correct: 0,
+                explain: "Fi'il Madhi menunjukkan pekerjaan yang telah selesai dikerjakan pada masa lalu (lampau)."
+            }
+        ];
+
+        let currentQ = 0;
+        let score = 0;
+
+        function loadQuizQuestion() {
+            const item = quizData[currentQ];
+            document.getElementById('quizCurrentNum').innerText = currentQ + 1;
+            document.getElementById('quizQuestion').innerText = item.q;
+            
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+
+            item.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:bg-sky-500/10 hover:border-sky-500 text-xs text-slate-800 dark:text-slate-200 font-medium transition flex items-center gap-3";
+                btn.innerHTML = `<span class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-[10px] font-bold text-slate-600 dark:text-slate-300 flex-shrink-0">${String.fromCharCode(65 + idx)}</span> <span>${opt}</span>`;
+                btn.onclick = () => checkAnswer(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            document.getElementById('quizFeedback').classList.add('hidden');
+            document.getElementById('nextQuizBtn').classList.add('hidden');
+        }
+
+        function checkAnswer(selectedIdx) {
+            const item = quizData[currentQ];
+            const feedback = document.getElementById('quizFeedback');
+            const optionsBtns = document.getElementById('quizOptions').children;
+
+            for (let btn of optionsBtns) {
+                btn.disabled = true;
+                btn.classList.add('opacity-60', 'cursor-not-allowed');
+            }
+
+            if (selectedIdx === item.correct) {
+                score += 10;
+                feedback.className = "mt-6 p-4 rounded-2xl text-xs font-medium bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400";
+                feedback.innerHTML = `<strong>Jawaban Benar! 🎉</strong> <p class="mt-1">${item.explain}</p>`;
+            } else {
+                feedback.className = "mt-6 p-4 rounded-2xl text-xs font-medium bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400";
+                feedback.innerHTML = `<strong>Kurang Tepat. 😅</strong> <p class="mt-1">${item.explain}</p>`;
+            }
+
+            document.getElementById('quizScoreText').innerText = `Skor: ${score}`;
+            feedback.classList.remove('hidden');
+            document.getElementById('nextQuizBtn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQ++;
+            if (currentQ < quizData.length) {
+                loadQuizQuestion();
+            } else {
+                document.getElementById('quizContent').innerHTML = `
+                    <div class="text-center py-6">
+                        <i class="fa-solid fa-trophy text-4xl text-amber-400 mb-3"></i>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white">Kuis Selesai!</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Skor Akhir Anda: <strong class="text-sky-500">${score} / 30</strong></p>
+                        <button onclick="resetQuiz()" class="mt-6 px-5 py-2.5 rounded-xl bg-sky-500 text-white text-xs font-semibold hover:bg-sky-600 transition">Ulangi Kuis</button>
+                    </div>
+                `;
+                document.getElementById('nextQuizBtn').classList.add('hidden');
+            }
+        }
+
+        function resetQuiz() {
+            currentQ = 0;
+            score = 0;
+            document.getElementById('quizScoreText').innerText = `Skor: 0`;
+            loadQuizQuestion();
+        }
+
+        loadQuizQuestion();
+
+        // --- 9. WHATSAPP MESSAGE GENERATOR ---
+        function sendWaMessage(e) {
+            e.preventDefault();
+            const name = document.getElementById('waName').value;
+            const topic = document.getElementById('waTopic').value;
+            const message = document.getElementById('waMessage').value;
+
+            const text = `Assalamu'alaikum Kang Hafizh,Perkenalkan nama saya *${encodeURIComponent(name)}*.%0A*Topik:* ${encodeURIComponent(topic)}%0A%0A*Pesan:*%0A${encodeURIComponent(message)}`;
+            window.open(`https://wa.me/6285188318586?text=${text}`, '_blank');
+            showToast('Membuka WhatsApp...', 'fa-circle-check');
+        }
+
+        // --- 10. TOAST SYSTEM ---
+        function showToast(msg, icon = 'fa-circle-check') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            document.getElementById('toastIcon').className = `fa-solid ${icon} text-emerald-400 text-base`;
+            
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
     </script>
 </body>
 </html>
